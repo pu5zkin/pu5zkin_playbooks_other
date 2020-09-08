@@ -1,0 +1,21 @@
+- hosts: rproxy
+  tasks:
+    - name: Install net-tools
+      become: yes
+      become_user: root
+      yum:
+        name: net-tools
+        state: present
+    - name: Install HAProxy package
+      become: yes
+      become_user: root
+      yum:
+        name: haproxy
+        state: present
+    - name: Start HAProxy services
+      become: yes
+      become_user: root
+      service:
+        name: haproxy
+        state: started
+        enabled: yes

@@ -1,0 +1,4 @@
+- hosts: webservers
+  tasks:
+    - name: Echo "Hello World"
+      command: echo "Hello World"

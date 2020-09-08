@@ -1,0 +1,21 @@
+- hosts: webservers
+  tasks:
+    - name: Install net-tools
+      become: yes
+      become_user: root
+      yum:
+        name: net-tools
+        state: present
+    - name: Install httpd package
+      become: yes
+      become_user: root
+      yum:
+        name: httpd
+        state: present
+    - name: Start httpd package
+      become: yes
+      become_user: root
+      service:
+        name: httpd
+        state: started
+        enabled: yes
