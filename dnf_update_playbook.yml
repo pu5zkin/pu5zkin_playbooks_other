@@ -1,0 +1,17 @@
+# Ad hoc Ansible Command:
+# ansible 127.0.0.1 -m dnf -a "name=* state=latest update_cache=yes"
+- hosts: 127.0.0.1
+  tasks:
+  - name: Upgrade all services
+    become: yes
+    dnf:
+      name: '*'
+      state: latest
+      update_cache: yes
+    register: dnf_output
+  
+  - debug: 
+      var: dnf_output.stdout_lines
+    
+
+
