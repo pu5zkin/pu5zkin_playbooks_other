@@ -1,0 +1,22 @@
+---
+# Ad hoc Ansible Command:
+# ansible 127.0.0.1 -m filesystem -a "dev=/dev/sdb fstype=vfat"
+- hosts: 127.0.0.1
+  become: yes
+  vars_prompt:
+    - name: device
+      prompt: Please, provide device to configure
+      private: no
+
+    - name: type
+      prompt: Provide, filesystem type
+      private: no
+
+  tasks:
+    - name: Configure filesystem
+      filesystem:
+         dev: '{{ device }}'
+         fstype: '{{ type }}'
+      register: filesystem_output
+    - debug:
+         msg: '{{ filesystem_output }}'
